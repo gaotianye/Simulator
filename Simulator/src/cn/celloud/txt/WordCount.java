@@ -38,7 +38,7 @@ public class WordCount {
 			}
 			line = line.trim();
 			String fileName = DateFormat.parseYMD(new Date());
-			FileUtils.writeToFile("/"+fileName, line);
+			FileUtils.writeToFile("E:/test/"+fileName, line);
 		}
 	}
 }
