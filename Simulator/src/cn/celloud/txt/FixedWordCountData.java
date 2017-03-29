@@ -16,7 +16,7 @@ import cn.celloud.utils.FileUtils;
 public class FixedWordCountData {
 	public static void main(String[] args) {
 		if (args.length < 3) {
-			System.err.println("Usage: RandomWordCountData <num4eachLine> <randomNum> <output>");
+			System.err.println("Usage: FixedWordCountData <num4eachLine> <randomNum> <output>");
 			// 非正常退出 System.exit(0)代表正常退出
 			System.exit(1);
 		}
