@@ -7,38 +7,46 @@ import cn.celloud.utils.DateFormat;
 import cn.celloud.utils.FileUtils;
 
 /**
- * 1、每行10个单词。 
+ * 1、每行args[0]个单词。 
  * 2、每个单词中间用空格分开 
  * 3、每个单词 字母个数从3-5（随机）
  * 4、每个单词 出现的字母 也是随机的（小写） good
  * @author Administrator
  */
-public class WordCount {
+public class RandomWordCountData {
 	public static void main(String[] args) {
+		if (args.length < 4) {
+			System.err.println("Usage: RandomWordCountData <num4eachLine> <randomMin> <randomMax> <output>");
+			// 非正常退出 System.exit(0)代表正常退出
+			System.exit(1);
+		}
+		int arg0 = Integer.parseInt(args[0]);
+		int arg1 = Integer.parseInt(args[1]);
+		int arg2 = Integer.parseInt(args[2]);
 		char letter = 'a';
 		String chars = "abcdefghijklmnopqrstuvwxyz";
 		// 4、每个线程处理1行
-		// 1、for循环10次，生成的单词中间用空格分开
+		// 1、for循环args[0]次，表示每行生成多少个单词，生成的单词中间用空格分开
 		while (true) {
 			String line = "";
-			for (int i = 0; i < 20; i++) {
+			for (int i = 0; i < arg0; i++) {
 				int nextInt = 0;
 				String word = "";
-				// 2、随机生成单词长度,最短3，最长5
+				// 2、随机生成单词长度
 				Random random = new Random();
 				//random.nextInt(N)--[0,N)
-				nextInt = random.nextInt(3) + 3;
+				nextInt = random.nextInt(arg2-arg1+1) + arg1;
 				// 3、随机生成字母
 				for (int j = 0; j < nextInt; j++) {
 					letter = chars.charAt((int) (Math.random() * 26));
 					word += letter;
 				}
 				line = line + word + " ";
-				// 5、将生成的每行数据写入1个文件中
 			}
 			line = line.trim();
 			String fileName = DateFormat.parseYMD(new Date());
-			FileUtils.writeToFile("E:/test/"+fileName, line);
+			// 5、将生成的每行数据写入1个文件中
+			FileUtils.writeToFile(args[3]+fileName, line);
 		}
 	}
 }
