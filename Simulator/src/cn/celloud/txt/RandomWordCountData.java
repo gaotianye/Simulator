@@ -1,5 +1,6 @@
 package cn.celloud.txt;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Random;
 
@@ -9,7 +10,7 @@ import cn.celloud.utils.FileUtils;
 /**
  * 1、每行args[0]个单词。 
  * 2、每个单词中间用空格分开 
- * 3、每个单词 字母个数从3-5（随机）
+ * 3、每个单词 字母个数用户指定
  * 4、每个单词 出现的字母 也是随机的（小写） good
  * @author Administrator
  */
@@ -46,7 +47,7 @@ public class RandomWordCountData {
 			line = line.trim();
 			String fileName = DateFormat.parseYMD(new Date());
 			// 5、将生成的每行数据写入1个文件中
-			FileUtils.writeToFile(args[3]+fileName, line);
+			FileUtils.writeToFile(args[3]+File.separatorChar+fileName, line);
 		}
 	}
 }
